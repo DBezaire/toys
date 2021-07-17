@@ -1,0 +1,22 @@
+{
+  "name": "toys",
+  "version": "1.0.0",
+  "description": "playing with toys to learn GIT, Javascript, HTML, CSS, etc.",
+  "main": "express.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DBezaire/toys.git"
+  },
+  "author": "Dave Bezaire",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DBezaire/toys/issues"
+  },
+  "homepage": "https://github.com/DBezaire/toys#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
