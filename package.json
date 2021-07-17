@@ -4,6 +4,7 @@
   "description": "playing with toys to learn GIT, Javascript, HTML, CSS, etc.",
   "main": "express.js",
   "scripts": {
+    "start": "node express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
