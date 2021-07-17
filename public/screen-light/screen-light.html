@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ScreenLight</title>
+    <meta http-equiv="Content-Language" content="en-us" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="screen-light.css" type="text/css" />
+  </head>
+  <body>
+    <div>
+      <p>
+        Screen Light
+        <br />
+        <input type="range" min="0" max="1" step=".02" value=".5">
+        <br />
+        <span></span>
+      </p>
+    </div>
+  </body>
+  <script>
+    //var range = document.getElementById("range");
+    var range = document.getElementsByTagName("input")[0];
+    var bg = document.getElementsByTagName("div")[0];
+    var para = document.getElementsByTagName("p")[0];
+    <!-- var span = para.getElementsByTagName("span")[0]; -->
+    function hexFromDecimal(dec) {
+      var hex = ((dec < 16) ? "0" : "") + dec.toString(16);
+      return "#" + hex + hex + hex;
+    }
+
+    range.addEventListener("change", function() {
+      //bg.style.setProperty('--bg-opacity', this.value);
+      var dec = parseInt(255 * this.value);
+      bg.style.setProperty('--bg-color', hexFromDecimal(dec));
+      dec = parseInt(255 * (.25 + (.5*this.value)));
+      <!-- dec = 255 - dec; -->
+      para.style.setProperty('--ctrl-color', hexFromDecimal(dec));
+      <!-- span.innerHTML = "range: " + this.value + ", dec: " + dec + ", hex: " + hexFromDecimal(dec); -->
+    });
+  </script>
+</html>

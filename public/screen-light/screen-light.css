@@ -1,0 +1,55 @@
+html {
+  /* --bg-opacity:.5; */     /* set to same as range control initial value */
+  /* --ctrl-color:#a5a5a5; /* equals .65*255 */ */
+  --ctrl-color:#808080; /* equals .5*255 */
+  --bg-color:#808080 /* equals .5*255 */
+}
+body {
+  font: normal normal normal 96%/1.4 verdana, arial, helvetica, sans-serif;
+}
+div::before {
+  /* opacity:var(--bg-opacity); */
+  content:"";
+  /* background-color:black; */
+  background-color:var(--bg-color);
+  position:absolute;
+  top:0px;
+  right:0px;
+  bottom:0px;
+  left:0px;
+}
+p {
+  position:relative; /* moves to front; would z do same? */
+  background-color:var(--ctrl-color);
+  margin-left:auto;
+  margin-right:auto;
+  width:20em;
+  text-align:center;
+  border-radius:10px;
+}
+input {
+  cursor:pointer;
+  width:18em;
+  background-color:var(--ctrl-color);
+}
+input::-moz-range-thumb  {
+  -webkit-appearance: none;
+  border: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: goldenrod;
+  border-style:solid;
+  border-color:black;
+  border-width:1px;
+}
+input::-moz-range-progress {
+  height:7px;
+  background:goldenrod;
+  border-style:solid;
+  border-color:black;
+  border-width:1px;
+  border-radius:4px;
+  border-bottom-right-radius:2px;
+  border-top-right-radius:2px;
+}
