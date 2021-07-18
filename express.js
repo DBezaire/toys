@@ -4,7 +4,7 @@ const port = process.env.PORT || 4000;
 
 app
   .get('/', (req, res) => res.send("got this served"))
-  .get('/mt', (req, res) => res.sendFile('/public/metro-timer/metro-timer.html'))
+  .get('/mt', (req, res) => res.sendFile(__dirname + '/public/metro-timer/metro-timer.html'))
   .get('/times', (req, res) => res.send(showTimes()))
   .use(express.static(__dirname + '/public'))
   .listen(port, () => console.log(`Node.JS with Express listening on port: ${port}`))
