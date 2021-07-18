@@ -1,11 +1,11 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 app
   .get('/', (req, res) => res.send("got this served"))
   .get('/times', (req, res) => res.send(showTimes()))
-  .listen(port, () => console.log(`Express listening on port: ${port}`))
+  .listen(port, () => console.log(`Node.JS with Express listening on port: ${port}`))
 ;
 
 showTimes = () => {
