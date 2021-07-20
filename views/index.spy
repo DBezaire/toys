@@ -1,0 +1,21 @@
+<<./html-top>>    
+  <link rel="stylesheet" href="/static/stylesheets/toys.css" type="text/css" />
+  <title>Toys</title>
+</head>
+<body onload="initSoundSynthesis();">
+  <h1>
+    Toys
+    <br>
+    {{added}}
+  </h1>
+  <p>
+    <a href="./metro-timer">Metro Timer</a>
+    <br>
+    <a href="./sound-synthesis">Sound Synthesis</a>
+    <br>
+    <a href="./screen-light">Screen Light</a>
+    <br>
+    <a href="bad">Produce error</a>
+  </p>
+</body>
+</html>

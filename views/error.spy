@@ -1,0 +1,13 @@
+<<./html-top>>    
+  <link rel="stylesheet" href="/static/stylesheets/toys.css" type="text/css" />
+  <title>Error</title>
+</head>
+<body>
+  <h1>
+    Error
+  </h1>
+  <p>
+    {{errorInfo}}
+  </p>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<<./html-top>>
+  <link rel="stylesheet" href="/static/stylesheets/metro-timer.css" type="text/css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <script src="/static/javascripts/metro-timer.js"></script>
+  <script src="/static/javascripts/sound-synthesis.js"></script>
+  <title>MetroTimer</title>
+</head>
+<body onload="init();">
+  <h1>
+    MetroTimer
+    <br>
+    {{added}} at {{time}}
+  </h1>
+  
+  <div id="Tempo" class="slider nudge stepper" data-stepper-sizes="1,20,30">
+    <span>Tempo</span>
+    <br />
+    <input type="range" min="0" max="400" step="1" value="60" />
+    <br />
+    <span></span>
+    <span></span>
+  </div>
+  
+  <div id="Volume" class="slider">
+    <span>Volume</span>
+    <br />
+    <input type="range" min="0" max="100" step="1" value="25">
+    <br />
+    <span></span>
+    <span></span>
+  </div>
+  
+  <div id="Time" class="slider nudge stepper" data-stepper-sizes="1,10,30">
+    <span>Time</span>
+    <br />
+    <input type="range" min="0" max="300" step="1" value="0">
+    <br />
+    <span></span>
+    <span></span>
+  </div>
+  
+  <div id="Count" class="slider nudge stepper" data-stepper-sizes="1,5,10">
+    <span>Count</span>
+    <br />
+    <input type="range" min="0" max="300" step="5" value="0">
+    <br />
+    <span></span>
+    <span></span>
+  </div>
+  
+  <div id="Action">
+    Action
+    <br />
+    <button name="Start/Stop" class="toggle"></button>
+    <button name="Pause/Restart" class="toggle"></button>
+    <i class="material-icons">play_circle_outline</i>
+    <i class="material-icons">pause_circle_outline</i>
+    <i class="material-icons" style="font-size:36px">settings</i>
+    <div></div>
+    <br />
+    <span></span>
+  </div>
+  
+  <div id="MetroTimerSettings">
+    <label for="bpm1">1</label>
+    <input type="radio" name="bpm" id="bpm1" value="1" onclick="metroTimer.beatsPerMeasure = this.value;">
+    <label for="bpm1">2</label>
+    <input type="radio" name="bpm" id="bpm2" value="2" onclick="metroTimer.beatsPerMeasure = this.value;">
+    <label for="bpm1">3</label>
+    <input type="radio" name="bpm" id="bpm3" value="3" onclick="metroTimer.beatsPerMeasure = this.value;">
+    <label for="bpm1">4</label>
+    <input type="radio" name="bpm" id="bpm4" value="4" checked="on" onclick="metroTimer.beatsPerMeasure = this.value;">
+    <label for="bpm1">6</label>
+    <input type="radio" name="bpm" id="bpm6" value="6" onclick="metroTimer.beatsPerMeasure = this.value;">
+  </div>
+  
+  <div id="Dice">
+    Dice
+    <br>
+    Dice: <input type="number" name="numDice" min="1" max="5" value="1">
+    Sides: <input type="number" name="numSides" min="4" max="9" value="6">
+    <div></div>
+    <span></span>
+    <br>
+    <button>Roll</button>
+  </div>
+ 
+  <div id="Cards">
+    <span>Cards</span>
+    <br>
+    <button>Draw</button>
+    <button>Reset</button>
+    <button>Shuffle</button>
+    <br>
+    <span></span>
+  </div>
+  
+  <div id="Utility">
+  Utility
+  </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<<./html-top>>     
+  <link rel="stylesheet" href="/static/stylesheets/sound-synthesis.css" type="text/css" />
+  
+  <script src="/static/javascripts/sound-synthesis.js"></script>
+  <title>SoundSynthesis</title>
+</head>
+<body onload="initSoundSynthesis();">
+  <h1>
+    Sound Synthesis
+    <br>
+    {{added}}
+  </h1>
+  <div id="noise">
+    <button onclick="playNoise();">noise</button>
+  </div>
+  <div id="soundTest">
+    <button onclick="soundTest();">play</button>
+  </div>
+</body>
+</html>
