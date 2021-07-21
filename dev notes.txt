@@ -1,7 +1,6 @@
 Toys dev notes
 
 ToDo
-- get hihat to work on local -- understand CORS
 - eliminate path.js
 
 
@@ -38,13 +37,21 @@ As of end of first build with node and express:
   - run server with command: node app.js
   - same gets done with npm start because that's what's defined in package.json
   
+npm
+  - installs and maintains Node.js modules (and maybe others?)
+  - seems driven by contents of package.json
+  - does it keep up with new versions automatically??
+  
 - nodemon
   - node module to restart automatically after changes
-  - start with command: nodemon app.js
-  - can also apply a DEBUG=toys:* before if using morgan
+  - start with command: nodemon [app.js]
+  - if app to run is left off, gets it from package.json
   
 - morgan
   - node module to enhance debug printing to console
+  - didn't figure much out about this, so turned it off for now
+  - seems can control with DEBUG environment variable??
+  - thus command to start might be "DEBUG=toys:* nodemon app.js"
   
 - express
   - node module to simplify web request handling
@@ -54,3 +61,14 @@ As of end of first build with node and express:
   - auto configurator module built a structure that was somewhat overkill; 
     - replaced ./bin/www with call to app.listen in app.js
   - path.js can be disbanded by (a) not used anywhere so put into app.js; or (b) get app.js to export the paths
+  
+-CORS
+  - Browser refuses to load resource from another domain if it does not have a 
+  - "Access-Control-Allow-Origin" header allowing same.
+  - Discovered this trying to load hihat.wav sound from external website into a page that had
+  - been served from localhost.
+  - Did this because browser refused to load the file directly from the file system.
+  - Test (see ./unused/cors-headers.js) proved how to add the required header.
+  - However, changed url for the sound file request to a relative link ("./static/sounds/xx.wav").
+  - This is not blocked by browser, so no need to load cross domains.
+  - Therefore archived the test to "./unused").

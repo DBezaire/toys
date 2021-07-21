@@ -42,12 +42,12 @@ app.set ('view engine', 'spy'); // tell app.render() to use default extension 's
 app.set ('views', paths.views); // tell app.render() to look in folder 'views' for the .spy files
 
 
-/*  
-// Register a function that returns Access-Control-Allow-Origin header
-// with sound file so it can be pulled from page served by localhost
-var corsRouter = require('./routes/cors-headers');
-app.use(corsRouter);
- */
+  
+// Register a function that returns Access-Control-Allow-Origin header.
+// See comments in function which is not in unused folder.
+// var corsRouter = require('./routes/cors-headers');
+// app.use(corsRouter);
+
 
 // Register a folder from which to serve files (i.e. not rendered views) 
 app.use('/static', express.static(paths.static));

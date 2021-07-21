@@ -1,7 +1,8 @@
 # Toys archive folder
 # leading slash makes it relative to the location of this .gitignore file
 # nothing trailing makes it match all files and subdirectories
-/unused
+# changed mind and decided to keep in repo for future reference
+#/unused
 
 # Dependency directories
 node_modules/
