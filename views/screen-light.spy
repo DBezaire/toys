@@ -1,5 +1,5 @@
-<<./html-top>>    
-  <link rel="stylesheet" href="/static/stylesheets/screen-light.css" type="text/css" />
+<<./partials/html-top>>
+  <link rel="stylesheet" href="/static/stylesheets/screen-light.css" type="text/css">
   <script src="/static/javascripts/screen-light.js"></script>
   <title>ScreenLight</title>
 </head>
@@ -7,9 +7,9 @@
   <div>
     <p>
       Screen Light
-      <br />
+      <br>
       <input type="range" min="0" max="1" step=".02" value=".5">
-      <br />
+      <br>
       <span></span>
     </p>
   </div>

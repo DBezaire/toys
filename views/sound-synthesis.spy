@@ -1,5 +1,5 @@
-<<./html-top>>     
-  <link rel="stylesheet" href="/static/stylesheets/sound-synthesis.css" type="text/css" />
+<<./partials/html-top>>
+  <link rel="stylesheet" href="/static/stylesheets/sound-synthesis.css" type="text/css">
   
   <script src="/static/javascripts/sound-synthesis.js"></script>
   <title>SoundSynthesis</title>

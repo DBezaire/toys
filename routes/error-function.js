@@ -11,7 +11,7 @@ var errorFunction = function(error, request, response, next) {
   response
     .status(500) // send HTML stats 500
     .render(
-        'error' // render template 'error.spy' from /views
+        './partials/error' // render template 'error.spy' from /views/partials
       , {errorInfo: error.message} // inject object with property 'errorInfo'
     );
 }

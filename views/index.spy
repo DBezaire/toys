@@ -1,8 +1,8 @@
-<<./html-top>>    
-  <link rel="stylesheet" href="/static/stylesheets/toys.css" type="text/css" />
+<<./partials/html-top>>
+  <link rel="stylesheet" href="/static/stylesheets/toys.css" type="text/css">
   <title>Toys</title>
 </head>
-<body onload="initSoundSynthesis();">
+<body>
   <h1>
     Toys
     <br>
@@ -15,7 +15,17 @@
     <br>
     <a href="./screen-light">Screen Light</a>
     <br>
-    <a href="bad">Produce error</a>
+    <a href="bad">Unrecognized baseUrl</a>
+    <br>
+    <a href="./static/bad">Unrecognized static url</a>
+    <br>
+    <a href="./error">Error page directly, not as an error</a>
+    <br>
+    <a href="./html-top">Partial html-top fragment</a>
+    <br>
+    <a href="./index">Index directly</a>
+    <br>
+    <a href="./static/sounds/samples_hihat.wav">hihat sample</a>
   </p>
 </body>
 </html>

@@ -1,18 +1,19 @@
 Toys dev notes
 
 ToDo
-- get hihat to work on local
+- get hihat to work on local -- understand CORS
+- eliminate path.js
 
 
 2021-07-20
 As of end of first build with node and express:
-- Class
+- classes
   - worked well for sliders and buttons with many instances
   - also useful for metrotimer to add reporting elements
   
 - AudioContext
   - amazing timing functions
-  - used oscillator, noise buffer, samples
+  - used oscillator, noise buffer, samples, gains
   ??? still get CORS error for sample from heroku
   
 - heroku
@@ -20,8 +21,9 @@ As of end of first build with node and express:
   - easy to use GIT to deploy to heroku
   - heroku app on PC manages most heroku functions without logging in there
   - run local copy: heroku local
-  - shows ongoing logs: heroku logs --num=20 --dyno=web --tail
-  - barfed on fixed port assignment: had to get from environment variable
+  - show ongoing logs: heroku logs --num=20 --dyno=web --tail
+  - Beware: barfed on fixed port assignment: had to get from environment variable
+  - Procfile contains startup command; currently set to get from package.json
   
 - GIT
   - two repos now on GITHUB
@@ -33,13 +35,22 @@ As of end of first build with node and express:
     - git push origin main
     
 - Node.js
-  - node app.js to run
-  - nodemon to restart automatically after changes: nodemon app.js
+  - run server with command: node app.js
+  - same gets done with npm start because that's what's defined in package.json
   
-- Node express
+- nodemon
+  - node module to restart automatically after changes
+  - start with command: nodemon app.js
+  - can also apply a DEBUG=toys:* before if using morgan
+  
+- morgan
+  - node module to enhance debug printing to console
+  
+- express
+  - node module to simplify web request handling
   - had to limit the "express.static" with a '/static' path to keep strange things from happening
   - had to calculate port from environment variable so it will work on heroku which barfs on fixed assignment
   - really forced use of a template engine so used 'sprightly' which is very light weight
-  - auto configurator built a structure that was somewhat overkill; 
+  - auto configurator module built a structure that was somewhat overkill; 
     - replaced ./bin/www with call to app.listen in app.js
-  - separate path.js can be disbanded by (a) not used anywhere so put into app.js; or (b) get app.js to export the paths
+  - path.js can be disbanded by (a) not used anywhere so put into app.js; or (b) get app.js to export the paths
