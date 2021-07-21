@@ -1,0 +1,45 @@
+Toys dev notes
+
+ToDo
+- get hihat to work on local
+
+
+2021-07-20
+As of end of first build with node and express:
+- Class
+  - worked well for sliders and buttons with many instances
+  - also useful for metrotimer to add reporting elements
+  
+- AudioContext
+  - amazing timing functions
+  - used oscillator, noise buffer, samples
+  ??? still get CORS error for sample from heroku
+  
+- heroku
+  - easy to create dynos to run app
+  - easy to use GIT to deploy to heroku
+  - heroku app on PC manages most heroku functions without logging in there
+  - run local copy: heroku local
+  - shows ongoing logs: heroku logs --num=20 --dyno=web --tail
+  - barfed on fixed port assignment: had to get from environment variable
+  
+- GIT
+  - two repos now on GITHUB
+  - typical process: 
+    - git status
+    - git add .
+    - git commit -m "message"
+    - git push heroku main
+    - git push origin main
+    
+- Node.js
+  - node app.js to run
+  - nodemon to restart automatically after changes: nodemon app.js
+  
+- Node express
+  - had to limit the "express.static" with a '/static' path to keep strange things from happening
+  - had to calculate port from environment variable so it will work on heroku which barfs on fixed assignment
+  - really forced use of a template engine so used 'sprightly' which is very light weight
+  - auto configurator built a structure that was somewhat overkill; 
+    - replaced ./bin/www with call to app.listen in app.js
+  - separate path.js can be disbanded by (a) not used anywhere so put into app.js; or (b) get app.js to export the paths
