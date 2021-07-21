@@ -25,7 +25,11 @@
     <br>
     <a href="./index">Index directly</a>
     <br>
-    <a href="./static/sounds/samples_hihat.wav">hihat sample</a>
+    <a href="./static/sounds/samples_hihat.wav">hihat sample via relative link</a>
+    <br>
+    <a href="http://localhost:4000/static/sounds/samples_hihat.wav">hihat sample via localhost</a>
+    <br>
+    <a href="http://toys-dlb.herokuapp.com/static/sounds/samples_hihat.wav">hihat sample via heroku</a>
   </p>
 </body>
 </html>
