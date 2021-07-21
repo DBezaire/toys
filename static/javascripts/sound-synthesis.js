@@ -284,9 +284,9 @@ soundClasses.Hihat = class extends soundClasses.Sound {
     this.gain.connect(this.context.destination);
     
     // this.sampleUrl = 'https://pure-ocean-69938.herokuapp.com/https://github.com/chrislo/drum_synthesis/blob/gh-pages/samples/hihat.wav?raw=true';
-   this.sampleUrl = 'https://toys-dlb.herokuapp.com/static/sounds/samples_hihat.wav';
-    // this.sampleUrl = './static/sounds/samples_hihat.wav';
-    // this.sampleUrl = 'http://localhost:4000/static/sounds/samples_hihat.wav';
+   // this.sampleUrl = 'https://toys-dlb.herokuapp.com/static/sounds/samples_hihat.wav';
+    this.sampleUrl = './static/sounds/samples_hihat.wav';
+    // this.sampleUrl = 'https://localhost:4000/static/sounds/samples_hihat.wav';
     
     this.sampleBuffer = 'nothing';
     loadSample(this.sampleUrl, this.context, buffer => this.sampleBuffer = buffer); 
