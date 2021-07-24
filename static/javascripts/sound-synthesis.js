@@ -5,6 +5,10 @@ var audioContext = null;
 var sounds = {};
 
 function initSoundSynthesis() {
+  // used for the test page sound-synthesis.html, 
+  // but has no effect on the soundClasses or their 
+  // use by other pages.
+  
   // add checkboxes for each sound, label them,
   // and store them in an object
   let soundList = Object.getOwnPropertyNames(soundClasses);
@@ -23,6 +27,10 @@ function initSoundSynthesis() {
 }
 
 function playNoise() {
+  // used for the test page sound-synthesis.html, 
+  // but has no effect on the soundClasses or their 
+  // use by other pages.
+  
   // routine to create a white noise output
   // for exploration of concepts. 
   // Was trying to get to a 
@@ -51,6 +59,10 @@ function playNoise() {
 }
 
 function soundTest() {
+  // used for the test page sound-synthesis.html, 
+  // but has no effect on the soundClasses or their 
+  // use by other pages.
+  
   // runs all of the sounds in soundClasses
   // for which checkboxes are turned on 
   
@@ -100,26 +112,6 @@ function createWhiteNoise(context) {
   return buffer;
 }
 
-function volumeToGain(volume) {
-// Converts a linear volume value between 0 and 100 into a gain value 
-// between 0 and ~1.5 via a function that increases low end resolution.
-//
-// Used https://elsenaju.eu/Calculator/online-curve-fit.htm to find coefficients 
-// eFunctionA and eFunctionB using points (0,0), (5,.004), (60,.4), (100,2).
-//
-// But that crosses the y-axis just above 0. So,
-// by inspection, the e-term goes to 1 when volume is zero.
-// So subtracting eFunctionB forces a true zero output.
-//
-// However, the gain node rejects true zero, so add a tiny fraction.
-  const eFunctionA = 0.033;
-  const eFunctionB = 0.061;
-  const gainNodeMinValue = 1.0e-15;
-  
-  let gain = (eFunctionB * Math.exp(eFunctionA * volume)) - eFunctionB + gainNodeMinValue;
-  return gain;
-}
-
 function loadSample(url, context, callback) {
   fetch(url)
     .then(response => {console.log(response); return response.arrayBuffer();})
@@ -135,16 +127,61 @@ soundClasses.Sound = class {
   constructor(context) {
     this.context = context;
     this.duration = .05;
-    this.volume = 25; // ranges from 0 to 100; applied equally to all sounds
+    
+    // this.volume is set externally by the user in real time from 0 to 100 to adjust listening level.
+    // The value set here is just a starting point.
+    // The volume is applied to all sounds from all subclasses.
+    this.volume = 25;
+    
+    // this.equalizeFactor is set individually in each sound subclass to make them sound roughly the same.
+    // It is a multiplier, so the default value of 1 set here has no effect.
+    this.equalizeFactor = 1;
   }
   
   trigger(time, beatInMeasure = 1, volume = this.volume) {
     if (typeof time == 'undefined') time = this.context.currentTime;
-    this.calcGain = volumeToGain(volume) * this.equalizeFactor;
+    this.calculateGain(volume);
     this.shapeSound(time, beatInMeasure);
   }
+  
   shapeSound() {
     alert('no shapeSound() defined');
+  }
+  
+  calculateGain(volume) {
+  // Converts a linear volume value between 0 and 100 into a gain value between 0 and 1.
+
+  // Theoretical goal is to generate output from the shapeSound() routines that varies from zero to 1.
+  // This is then multiplied by a gain ranging from zero to 1 calculated through this function 
+  // to attenuate (reduce) the signal. This is to avoid potential clipping which supposedly happens
+  // in some browsers when output values exceed 1.
+  // See discussion in https://teropa.info/blog/2016/08/30/amplitude-and-loudness.html.
+
+  // However, reality perceived by listening to several computers, speakers, and/or browsers might show
+  // that the overall outputs are too low or too high. Therefore, this.volumeAdjust can be set here.
+  // It is a multiplier, so a value of 1 has no effect.
+  // It is applied to all sounds from all subclasses.
+  this.volumeAdjust = 1;
+  
+  // Attempt to give the user greater volume control at the low end by an exponential function.
+  // Tried to use https://elsenaju.eu/Calculator/online-curve-fit.htm to find coefficients 
+  // using points (0,0), (5,.005), (60,.35), (100,1). It produced odd results which in turned
+  // made me realize by inspection that 100 squared times .0001 gets me the 1 that I want.
+  // Thus, and after playing in Excel a bit (./unused/sound-synthesis/volume-calculations.xlsx),
+  // it becomes y = (10 ^ (-2 * power)) * (x ^ power) with power varying from about 1 to 3 
+  // to give various sensitivity curves. In the end, doesn't seem to have all that much effect.
+  this.volumePower = 2;
+
+  // The gain node rejects true zero, so add a tiny fraction across the board.
+  const gainNodeMinValue = 1.0e-15;
+  
+  // this.equalizeFactor gets set in each sound subclass.
+    
+  this.calcGain = ((10 ** (-2 * this.volumePower)) * (volume ** this.volumePower)) 
+                  * this.equalizeFactor 
+                  * this.volumeAdjust
+                  + gainNodeMinValue
+  ;
   }
 }
 
@@ -309,3 +346,26 @@ soundClasses.Hihat = class extends soundClasses.Sound {
   }
 }
 
+soundClasses.WhiteNoise  = class extends soundClasses.Sound {
+  constructor(context) {
+    super (context);
+    this.equalizeFactor = 1;  // ranges 0 to 5 or more; adjust for each sound to balance them with each other
+    
+    this.gain = this.context.createGain();
+    this.gain.connect(this.context.destination);
+
+    this.whiteNoiseBuffer = createWhiteNoise(audioContext);
+  }
+  
+  shapeSound(time, beatInMeasure) {
+    let sound = this.context.createBufferSource();
+    sound.buffer = this.whiteNoiseBuffer;
+    sound.connect(this.gain);
+    
+    this.gain.gain.setValueAtTime(this.calcGain, time);
+    this.gain.gain.exponentialRampToValueAtTime(0.01, time + 0.2);
+
+    sound.start(time);
+    sound.stop(time + this.duration);
+  }
+}
