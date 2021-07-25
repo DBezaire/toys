@@ -1,0 +1,30 @@
+// copied from https://portfolio.edparadis.com/portfolio/codepen/
+const s = Snap("#svg");
+
+
+const t2 = s.text(0,0,["Hi, my name is ", "Ed"])
+const t3 = s.text(0,20,["and I do"])
+const t4 = s.text(0,40,["E","ngineering & ","D","esign"])
+const tg = s.group(t2,t3,t4)
+tg.transform("translate(100,100)")
+tg.selectAll("tspan").forEach((tspan,i)=>{
+  if(i%2==1)
+    tspan.attr({fill:"#D00"})
+})
+
+const c = s.circle(50, 50, 20);
+const t = s.text(50, 55, "ED");
+t.attr({ fill: "#BBB", "text-anchor": "middle" });
+
+document.querySelector("button#boop").addEventListener("click", () => {
+  c.animate({ r: 400, x: 150, y: 100 }, 300, () => {});
+  t.animate({ x: 150, y: 120 }, 300, () => {});
+  Snap.animate(0,1,(v)=>{t.attr({'font-size':(16+v*60)})},300)
+});
+
+document.querySelector("button#unboop").addEventListener("click", () => {
+  c.animate({ r: 20, x: 50, y: 50 }, 300, () => {})
+  t.attr({ "font-size": 16 })
+  t.animate({ x: 50, y: 55 }, 300, () => {})
+  Snap.animate(0,1,(v)=>{t.attr({'font-size':(76-v*60)})},300)
+});
