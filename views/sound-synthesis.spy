@@ -1,20 +1,47 @@
 <<./partials/html-top>>
   <link rel="stylesheet" href="/static/stylesheets/sound-synthesis.css" type="text/css">
-  
+
   <script src="/static/javascripts/sound-synthesis.js"></script>
   <title>SoundSynthesis</title>
 </head>
-<body onload="initSoundSynthesis();">
+<body>
   <h1>
     Sound Synthesis
     <br>
     {{added}}
   </h1>
+  <h2>make noise</h2>
   <div id="noise">
     <button onclick="playNoise();">noise</button>
   </div>
-  <div id="soundTest">
-    <button onclick="soundTest();">play</button>
+  <h2>test sounds</h2>
+  <div>
+    <button onclick="setupTestSounds(this);">setup</button>
+    <ul class='controls'>
+      <li>
+        <label for="play-time">play time</label>
+        <input type="range" id="play-time" min="1" max="9" step="1" value="5">
+      </li>
+      <li>
+        <label for="beat-length">beat length</label>
+        <input type="range" id="beat-length" min=".5" max="2" step=".25" value=".75">
+      </li>
+      <li>
+        <label for="volume">volume</label>
+        <input type="range" id="volume" min="5" max="100" step="5" value="25">
+      </li>
+    </ul>
   </div>
+
+  <h2>some sites: </h2>
+  <ul>
+    <li><a href="https://www.redblobgames.com/x/1618-webaudio/">Experiments with WebAudio by Red Blob Games</a></li>
+    <li><a href="http://outputchannel.com/post/tr-808-cowbell-web-audio/">Cowbell by Output Channel</a></li>
+    <li><a href="http://outputchannel.com/post/recreating-phone-sounds-web-audio/">Phone Sounds by Output Channel</a></li>
+    <li><a href="https://noisehack.com/generate-noise-web-audio-api/">Various kinds of noise</a></li>
+    <li><a href="https://dev.opera.com/articles/drum-sounds-webaudio/">Drum Sounds by Chris Lowis</a></li>
+    <li><a href="https://github.com/itsjoesullivan/envelope-generator/blob/master/envelope-generator.js">ADSR Envelope Generator Node.js module by Joe Sullivan</a></li>
+    <li><a href="http://tonehack.com/">Timbre Builder by tonehack</a></li>
+  </ul>
 </body>
 </html>

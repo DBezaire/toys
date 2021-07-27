@@ -20,10 +20,37 @@ button {
   display:block;
   margin: .1em auto .8em auto;
   border-radius:.2em;
+  padding:.3em;
+  width:5em;
 }
 label {
-  margin: .2em .2em .2em 1.4em;
+  text-align:right;
+  display:inline-block;
+  width:6em;
 }
-input {
+div ul {
+  list-style-type:none;
+  padding:0;
+}
+ul.checkboxes li {
+  display:inline-block;
+  width:50%;
+  text-align:left;
+}
+ul.checkboxes label {
+  width:8em;
+  padding:0 1em 0 0;
+}
+ul.checkboxes input {
   transform:scale(1.8);
+  margin: 0;
+}
+ul.controls {
+  display:none;
+}
+ul.controls label {
+  width:8em;
+}
+ul.controls input {
+  width:18em;
 }
