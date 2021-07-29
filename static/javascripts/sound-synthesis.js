@@ -460,5 +460,51 @@ soundClasses.DialTone = class extends soundClasses.Sound {
     
     osc1.start(time);
     osc1.stop(time + this.calcDuration);
+    osc2.start(time);
+    osc2.stop(time + this.calcDuration);
   }
 }
+
+soundClasses.Cowbell = class extends soundClasses.Sound {
+  constructor(context) {
+    super(context);
+    this.soundName = 'Cowbell';
+    this.equalizeFactor = .6;
+    
+    this.filter = this.context.createBiquadFilter();
+    this.filter.connect(this.gain1);
+    this.filter.type = 'bandpass';
+    this.filter.frequency.setValueAtTime(800, 0);
+    
+    this.attackTime = 0;
+    this.release = 0;
+    this.decayTime = .4;
+    this.sustainLevel = 0;
+    this.release = .1
+    this.quietTimeAtEndProportion = .3;
+    
+    this.frequency1 = 800;
+    this.frequency2 = 540;
+    this.oscillatorType = 'square';
+  }
+  
+  shapeSound(time, beatInMeasure) {
+    let osc1 = this.context.createOscillator();
+    osc1.connect(this.filter);
+    osc1.type = this.oscillatorType;
+    osc1.frequency.value = this.frequency1;
+    
+    let osc2 = this.context.createOscillator();
+    osc2.connect(this.filter);
+    osc1.type = this.oscillatorType;
+    osc2.frequency.value = this.frequency2;
+
+    this.setGain(this.gain1.gain, time);
+    
+    osc1.start(time);
+    osc1.stop(time + this.calcDuration);
+    osc2.start(time);
+    osc2.stop(time + this.calcDuration);
+  }
+}
+
