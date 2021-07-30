@@ -1,5 +1,6 @@
 <<./partials/html-top>>
   <link rel="stylesheet" href="/static/stylesheets/toys.css" type="text/css">
+  <meta name="viewport" content="width=500, initial-scale=1">
   <title>Toys</title>
 </head>
 <body>
@@ -13,7 +14,10 @@
     <br>
     <a href="./sound-synthesis">Sound Synthesis</a>
     <br>
+    <a href="./animation">Animation</a>
+    <br>
     <a href="./screen-light">Screen Light</a>
+    <br>
     <br>
     <a href="bad">Unrecognized baseUrl</a>
     <br>
