@@ -10,12 +10,8 @@
     <br>
     {{added}}
   </h1>
-  <h2>circle over box</h2>
-  <div class="cob box">
-    <div class="circle"></div>
-    <button onclick="cob();">start</button>
-  </div>
-  <h2>controls/h2>
+  
+  <h2>controls</h2>
   <div>
     <button onclick="setupTestAnimation(this);">setup</button>
     <ul class='controls'>
@@ -28,15 +24,25 @@
         <input type="range" id="beat-length" min=".5" max="2" step=".25" value=".75">
       </li>
       <li>
-        <label for="volume">volume</label>
-        <input type="range" id="volume" min="5" max="100" step="5" value="25">
+        <label for="speed">speed</label>
+        <input type="range" id="speed" min="5" max="100" step="5" value="25">
       </li>
     </ul>
+  </div>
+  
+  <h2>circle over box</h2>
+  <div id="cob" class="container">
+    <div class="box">
+      <div class="circle">
+      </div>
+    </div>
   </div>
 
   <h2>some sites: </h2>
   <ul>
-    <li><a href=""></a></li>
+    <li><a href="https://www.motiontricks.com/">Web Animation by motion tricks</a></li>
+    <li><a href="https://www.webdesignerdepot.com/2015/05/the-ultimate-guide-to-web-animation/">Ultimate Guide to Web Animation</a></li>
+    <li><a href="https://www.kirupa.com/html5/learn_animation.htm">Web Animation by Kirupa</a></li>
   </ul>
 </body>
 </html>

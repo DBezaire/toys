@@ -15,6 +15,35 @@ div {
   margin: 1em auto;
   padding:.5em;
 }
+
+#cob .box {
+  background-color:yellow;
+  border-radius:0;
+  position:relative;
+  height:6em;
+  width:12em;
+  margin:0;
+  padding:0;
+}
+#cob .circle {
+  width:1em;
+  height:1em;
+  border-radius:1em;
+  background-color:red;
+  /* position:absolute; */
+  margin:0;
+  padding:0;
+  
+  position:relative;
+  left:0;
+  transition:all 1s;
+}
+
+#cob .circle:hover {
+  left:30px;
+}
+
+
 button {
   font-size: 120%;
   display:block;
