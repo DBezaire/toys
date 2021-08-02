@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+ 
+<head>
+    <title>cover-box</title>
+ 
+    <style>
+        body {
+          padding:20px;
+          background-color:#FFC0CB;
+        }
+        .container {
+          height: 300px;
+          background-color: #EEE;
+        }
+        .elem-to-shade {
+          overflow:hidden;
+          position:relative;
+        }
+        .shadingElem {
+          position:absolute;
+          top:-50%;
+          width:100%;
+          height:100%;
+          border-radius:50%;
+          background-color:#003F34;
+          opacity:5%;
+          transform: scale(0);
+        }
+        .show-shade {
+          animation-name: shade-animation;
+          animation-duration: 60s;
+          animation-iteration-count: 1;
+          animation-timing-function: linear;
+        }
+        @keyframes shade-animation {
+          96% {transform: scale3d(1.41, 2.82, 1);}
+          100% {transform: scale(0);}
+        }
+    </style>
+    <script>
+      function cover(secs) {
+        if (typeof secs == "object") secs = secs.innerHTML;
+        let shade = document.querySelector('.shadingElem');
+        toggleShade(shade, secs);
+      }
+      function toggleShade(elem, time) {
+          elem.classList.remove('show-shade');
+          if (time > 0) {
+            setTimeout(() => {
+              elem.classList.add('show-shade');
+              elem.style.animationDuration = time + 's';
+            }, 10);
+          }
+      }
+    </script>
+</head>
+ 
+<body>
+  <p>
+    <button onclick="cover(this)">0</button>
+    <button onclick="cover(this)">0.5</button>
+    <button onclick="cover(this)">4</button>
+    <button onclick="cover(this)">8</button>
+    <button onclick="cover(this)">12</button>
+    <button onclick="cover(this)">30</button>
+    <button onclick="cover(this)">120</button>
+    <button onclick="cover(this)">-1</button>
+  </p>
+  <div class="container elem-to-shade" onmouseenter="cover(4);" onmouseleave="cover(-1);">
+    <div class="shadingElem"></div>
+  </div>
+</body>
+ 
+</html>

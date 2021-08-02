@@ -43,6 +43,12 @@
     <li><a href="https://www.motiontricks.com/">Web Animation by motion tricks</a></li>
     <li><a href="https://www.webdesignerdepot.com/2015/05/the-ultimate-guide-to-web-animation/">Ultimate Guide to Web Animation</a></li>
     <li><a href="https://www.kirupa.com/html5/learn_animation.htm">Web Animation by Kirupa</a></li>
+    <ul>
+      <li><a href="./static/html/animation-kirupa/1-css-animations.html">1-css-animations</a></li>
+      <li><a href="./static/html/animation-kirupa/2-css-transitions.html">2-css-transitions</a></li>
+      <li><a href="./static/html/animation-kirupa/3-cover-box.html">3-cover-box</a></li>
+      <li><a href="./static/html/animation-kirupa/4-click-animation.html">4-click-animation</a></li>
+    </ul>
   </ul>
 </body>
 </html>
