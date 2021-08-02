@@ -4,7 +4,7 @@
 class MetroTimer {
   constructor(tempo = 0) {
     // params that typically get can be updated while running
-    this.tempo = tempo;
+    this.tempo = tempo; // beats per minute
     this.volume = 25;
     this.countLimit = null;
     this.timeLimit = null;
@@ -19,6 +19,8 @@ class MetroTimer {
     this.scheduleAheadTime = 0.1;   // How far ahead to schedule audio (sec)
     
     this.minimumTempo = 6; // keeps metronome from running with over 10 seconds between beats
+    
+    this.shade = {Time: null, Count: null};
   }
 
   playOneBeat(beatTime) {
@@ -50,13 +52,21 @@ class MetroTimer {
   }
   
   showElapsedOrRemaining(current, start, limit, elem, format = (a) => a) {
+    let timeOrCount = elem.parentElement.id; // will be either Count or Time
     if (limit == null) {
       let elapsed = Math.round(current - start);
       if(elapsed >= 1) elem.innerHTML = format(elapsed);
+      toggleShade(elem.parentElement.querySelector('.shadingElem'), -1);
     } else {
       let remaining = Math.max(0, Math.round(start + limit - current));
       elem.innerHTML = 'remaining: ' + format(remaining);
       if (remaining < 1) this.stop();
+      //show shade animation
+      let shadeLimit = (timeOrCount == 'Time') ? limit : 60 * limit / this.tempo;
+      if (this.shade[timeOrCount] != shadeLimit) {
+        this.shade[timeOrCount] = shadeLimit;
+        toggleShade(elem.parentElement.querySelector('.shadingElem'), shadeLimit);
+      }
     }
   }  
 
@@ -81,12 +91,19 @@ class MetroTimer {
     this.isRunning = true;
     this.intervalID = setInterval(() => this.scheduler(), this.lookahead);
     this.startStopButton.setLabel(1);
+    
+    this.shade.Time = null;
+    this.shade.Count = null;
   }
 
   stop() {
     this.isRunning = false;
     clearInterval(this.intervalID);
     this.startStopButton.setLabel(0);
+    toggleShade(this.reportCountElement.parentElement.querySelector('.shadingElem'), -1);
+    toggleShade(this.reportTimeElement.parentElement.querySelector('.shadingElem'), -1);
+    this.shade.Time = null;
+    this.shade.Count = null;
   }
 
   toggleStartStop() {
@@ -583,6 +600,16 @@ function secs2MinsSecs(seconds) {
 
 function setAttributes(el, attrs) {
   Object.entries(attrs).forEach(([key, value]) => el.setAttribute(key, value)); 
+}
+
+function toggleShade(elem, time) {
+    elem.classList.remove('show-shade');
+    if (time > 0) {
+      setTimeout(() => {
+        elem.classList.add('show-shade');
+        elem.style.animationDuration = time + 's';
+      }, 10);
+    }
 }
 
 /** Tone      -----------------------------------------------------

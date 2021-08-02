@@ -31,22 +31,24 @@
     <span></span>
   </div>
   
-  <div id="Time" class="slider nudge stepper" data-stepper-sizes="1,10,30">
+  <div id="Time" class="slider nudge stepper elem-to-shade" data-stepper-sizes="1,10,30">
     <span>Time</span>
     <br>
     <input type="range" min="0" max="300" step="1" value="0">
     <br>
     <span></span>
     <span></span>
+    <div class="shadingElem"></div>
   </div>
   
-  <div id="Count" class="slider nudge stepper" data-stepper-sizes="1,5,10">
+  <div id="Count" class="slider nudge stepper elem-to-shade" data-stepper-sizes="1,5,10">
     <span>Count</span>
     <br>
     <input type="range" min="0" max="300" step="5" value="0">
     <br>
     <span></span>
     <span></span>
+    <div class="shadingElem"></div>
   </div>
   
   <div id="Action">

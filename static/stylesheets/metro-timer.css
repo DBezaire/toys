@@ -1,6 +1,9 @@
 html {
-  --ctrl-color:#808080; /* equals .5*255 */
-  --bg-color:#808080; /* equals .5*255 */
+
+/*  --ctrl-color:#808080;  equals .5*255 */
+/*  --bg-color:#808080;  equals .5*255 */
+  --ctrl-color:#CCCCCC;
+  --bg-color:#CCCCCC;
 }
 body {
   font: normal normal normal 96%/1.4 verdana, arial, helvetica, sans-serif;
@@ -221,4 +224,30 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
   background: #2497E3;
+}
+
+/* timer and count shader */
+.elem-to-shade {
+  overflow:hidden;
+  position:relative;
+}
+.shadingElem {
+  position:absolute;
+  top:-50%;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background-color:#003F34;
+  opacity:5%;
+  transform: scale(0);
+}
+.show-shade {
+  animation-name: shade-animation;
+  animation-duration: 60s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+@keyframes shade-animation {
+  96% {transform: scale3d(1.41, 2.82, 1);}
+  100% {transform: scale(0);}
 }
