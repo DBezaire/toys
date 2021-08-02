@@ -1,0 +1,85 @@
+html {
+  --ctrl-color:#808080; /* equals .5*255 */
+  --bg-color:#808080; /* equals .5*255 */
+}
+body {
+  font: normal normal normal 96%/1.4 verdana, arial, helvetica, sans-serif;
+}
+div {
+  position:relative;
+  background-color:var(--ctrl-color);
+  width:90%;
+  max-width:45em;
+  text-align:center;
+  border-radius:10px;
+  margin: 1em auto;
+  padding:.5em;
+}
+
+#cob .box {
+  background-color:yellow;
+  border-radius:0;
+  position:relative;
+  height:6em;
+  width:12em;
+  margin:0;
+  padding:0;
+}
+#cob .circle {
+  width:1em;
+  height:1em;
+  border-radius:1em;
+  background-color:red;
+  /* position:absolute; */
+  margin:0;
+  padding:0;
+  
+  position:relative;
+  left:0;
+  transition:all 1s;
+}
+
+#cob .circle:hover {
+  left:30px;
+}
+
+
+button {
+  font-size: 120%;
+  display:block;
+  margin: .1em auto .8em auto;
+  border-radius:.2em;
+  padding:.3em;
+  width:5em;
+}
+label {
+  text-align:right;
+  display:inline-block;
+  width:6em;
+}
+div ul {
+  list-style-type:none;
+  padding:0;
+}
+ul.checkboxes li {
+  display:inline-block;
+  width:50%;
+  text-align:left;
+}
+ul.checkboxes label {
+  width:8em;
+  padding:0 1em 0 0;
+}
+ul.checkboxes input {
+  transform:scale(1.8);
+  margin: 0;
+}
+ul.controls {
+  display:none;
+}
+ul.controls label {
+  width:8em;
+}
+ul.controls input {
+  width:18em;
+}
